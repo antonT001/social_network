@@ -6,7 +6,8 @@ let state = {
     postsData: [
       { id: 1, message: "It's my first post!!!", likesCount: '15' },
       { id: 2, message: 'Hi, how are you?', likesCount: '3' }
-    ]
+    ],
+    textareaData: ""
   },
 
   dialogsPage: {
@@ -18,10 +19,11 @@ let state = {
       { id: 5, name: 'Fedot', ava: 'https://coolsen.ru/wp-content/uploads/2021/09/11-900x563.jpg' },
     ],
     messegesData: [
-      { id: 1, text: 'Message 1' },
-      { id: 2, text: 'Message 2' },
-      { id: 3, text: 'Message 3' }
-    ]
+      { id: 1, message: 'Message 1' },
+      { id: 2, message: 'Message 2' },
+      { id: 3, message: 'Message 3' }
+    ],
+    textareaData: ""
   },
   sidebar: [
     { id: 1, name: 'Valera', ava: 'https://pixelbox.ru/wp-content/uploads/2020/12/avatar-youtube-10.jpg' },
@@ -30,14 +32,40 @@ let state = {
   ]
 }
 
-export let addPost = (postMessage) => {
+export let addPost = () => {
+  if (state.profilePage.textareaData == "") return;
   let newPost = {
     id: 3,
-    message: postMessage,
+    message: state.profilePage.textareaData,
     likesCount: 0
   }
   state.profilePage.postsData.push(newPost);
+  state.profilePage.textareaData = ""
   rerenderEntireTree(state);
 }
+
+export let changePostElement = (text) => {
+
+  state.profilePage.textareaData = text;
+  rerenderEntireTree(state);
+}
+
+export let addMessage = () => {
+  if (state.dialogsPage.textareaData == "") return;
+  let newMessage = {
+    id: 4,
+    message: state.dialogsPage.textareaData
+  }
+  state.dialogsPage.messegesData.push(newMessage);
+  state.dialogsPage.textareaData = ""
+  rerenderEntireTree(state);
+}
+
+export let changeMessageElement = (text) => {
+
+  state.dialogsPage.textareaData = text;
+  rerenderEntireTree(state);
+}
+
 
 export default state; 
