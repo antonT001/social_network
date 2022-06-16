@@ -1,5 +1,10 @@
 import { getAllByDisplayValue } from "@testing-library/react";
-import rerenderEntireTree from "../render";
+
+let rerenderEntireTree = () =>{
+  ;
+}
+
+
 
 let state = {
   profilePage: {
@@ -32,7 +37,7 @@ let state = {
   ]
 }
 
-export let addPost = () => {
+export const addPost = () => {
   if (state.profilePage.textareaData == "") return;
   let newPost = {
     id: 3,
@@ -44,13 +49,13 @@ export let addPost = () => {
   rerenderEntireTree(state);
 }
 
-export let changePostElement = (text) => {
+export const changePostElement = (text) => {
 
   state.profilePage.textareaData = text;
   rerenderEntireTree(state);
 }
 
-export let addMessage = () => {
+export const addMessage = () => {
   if (state.dialogsPage.textareaData == "") return;
   let newMessage = {
     id: 4,
@@ -61,10 +66,14 @@ export let addMessage = () => {
   rerenderEntireTree(state);
 }
 
-export let changeMessageElement = (text) => {
+export const changeMessageElement = (text) => {
 
   state.dialogsPage.textareaData = text;
   rerenderEntireTree(state);
+}
+
+export const subscribe = (observer) => {
+  rerenderEntireTree = observer
 }
 
 
