@@ -1,7 +1,10 @@
 import React from 'react';
+import { addMessageActionCreator, changeDialogsElementActionCreator } from '../state';
 import DialogItem from './DialogItem/DialogItem';
 import s from './Dialogs.module.css';
 import Message from './Message/Message';
+
+
 
 const Dialogs = (props) => {
     let dialogsElement = props.dialogsPage.dialogsData.map(elm =>
@@ -12,13 +15,13 @@ const Dialogs = (props) => {
     
     let newMessageElement = React.createRef();
     
-    let changePostElement = () => {
+    let changeDialogsElement = () => {
         let text = newMessageElement.current.value;
-        props.dispatch({type: 'CHANGE-MESSAGE-ELEMENT', text:text});
+        props.dispatch(changeDialogsElementActionCreator(text));
       }
 
     let addMessage = () => {
-        props.dispatch({type: 'ADD-MESSAGE'});
+        props.dispatch(addMessageActionCreator());
     }
     
 
@@ -32,7 +35,7 @@ const Dialogs = (props) => {
                     { mesegesElement }
                 </div>
                 <div>
-                    <textarea ref={newMessageElement} value={props.dialogsPage.textareaData} onChange={changePostElement}></textarea>
+                    <textarea ref={newMessageElement} value={props.dialogsPage.textareaData} onChange={changeDialogsElement}></textarea>
                 </div>
                 <div>
                     <button onClick={addMessage}> Add message</button>

@@ -1,4 +1,9 @@
-import { getAllByDisplayValue } from "@testing-library/react";
+const ADD_POST = 'ADD-POST';
+const CHANGE_POST_ELEMENT = 'CHANGE-POST-ELEMENT';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const CHANGE_MESSAGE_ELEMENT = 'CHANGE-MESSAGE-ELEMENT';
+
+
 
 
 
@@ -46,8 +51,8 @@ let store = {
 
   dispatch(action) {
     switch (action.type) {
-      case 'ADD-POST':
-        if (this._state.profilePage.textareaData == "") return;
+      case ADD_POST:
+        if (this._state.profilePage.textareaData === "") return;
         let newPost = {
           id: 3,
           message: this._state.profilePage.textareaData,
@@ -57,13 +62,13 @@ let store = {
         this._state.profilePage.textareaData = ""
         this._callSubscriber(this._state);
         break;
-      case 'CHANGE-POST-ELEMENT':
-        this._state.profilePage.textareaData = action.text;
+      case CHANGE_POST_ELEMENT:
+        this._state.profilePage.textareaData = action.newText;
         this._callSubscriber(this._state);
         break;
 
-      case 'ADD-MESSAGE':
-        if (this._state.dialogsPage.textareaData == "") return;
+      case ADD_MESSAGE:
+        if (this._state.dialogsPage.textareaData === "") return;
         let newMessage = {
           id: 4,
           message: this._state.dialogsPage.textareaData
@@ -73,8 +78,8 @@ let store = {
         this._callSubscriber(this._state);
         break;
 
-      case 'CHANGE-MESSAGE-ELEMENT':
-        this._state.dialogsPage.textareaData = action.text;
+      case CHANGE_MESSAGE_ELEMENT:
+        this._state.dialogsPage.textareaData = action.newText;
         this._callSubscriber(this._state);
         break;
 
@@ -83,5 +88,10 @@ let store = {
     }
   }
 }
+
+export const addPostActionCreator = () => ({ type: ADD_POST });
+export const changePostElementActionCreator = (text) => ({ type: CHANGE_POST_ELEMENT, newText: text });
+export const changeDialogsElementActionCreator = (text) => ({ type: CHANGE_MESSAGE_ELEMENT, newText: text });
+export const addMessageActionCreator = () => ({ type: ADD_MESSAGE });
 
 export default store; 
