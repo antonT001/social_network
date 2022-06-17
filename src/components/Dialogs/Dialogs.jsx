@@ -15,8 +15,9 @@ const Dialogs = (props) => {
     
     let newMessageElement = React.createRef();
     
-    let changeDialogsElement = () => {
-        let text = newMessageElement.current.value;
+    let changeDialogsElement = (e) => {
+        //let text = newMessageElement.current.value; узнать про ref
+        let text = e.target.value;
         props.dispatch(changeDialogsElementActionCreator(text));
       }
 
@@ -35,7 +36,10 @@ const Dialogs = (props) => {
                     { mesegesElement }
                 </div>
                 <div>
-                    <textarea ref={newMessageElement} value={props.dialogsPage.textareaData} onChange={changeDialogsElement}></textarea>
+                    <textarea placeholder='Enter your message' 
+                        //ref={newMessageElement} узнать про ref
+                        value={props.dialogsPage.textareaData} 
+                        onChange={changeDialogsElement}></textarea>
                 </div>
                 <div>
                     <button onClick={addMessage}> Add message</button>

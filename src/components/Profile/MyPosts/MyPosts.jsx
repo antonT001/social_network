@@ -11,8 +11,9 @@ const MyPosts = (props) => {
 
   let newPostElement = React.createRef();
 
-  let changePostElement = () => {
-    let text = newPostElement.current.value;
+  let changePostElement = (e) => {
+    //let text = newPostElement.current.value; узнать про ref
+    let text = e.target.value;
     props.dispatch(changePostElementActionCreator(text));
   }
 
@@ -27,7 +28,8 @@ const MyPosts = (props) => {
       <div>
         <div>
           <textarea 
-            ref={newPostElement} 
+          placeholder='Enter your message'
+            //ref={newPostElement} узнать про ref
             value={props.profilePage.textareaData} 
             onChange={changePostElement}></textarea>
         </div>

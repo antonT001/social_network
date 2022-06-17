@@ -3,10 +3,6 @@ const CHANGE_POST_ELEMENT = 'CHANGE-POST-ELEMENT';
 const ADD_MESSAGE = 'ADD-MESSAGE';
 const CHANGE_MESSAGE_ELEMENT = 'CHANGE-MESSAGE-ELEMENT';
 
-
-
-
-
 let store = {
   _state: {
     profilePage: {
