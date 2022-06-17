@@ -12,12 +12,12 @@ const MyPosts = (props) => {
 
   let changePostElement = () => {
     let text = newPostElement.current.value;
-    props.changePostElement(text);
+    props.dispatch({type:'CHANGE-POST-ELEMENT', text:text});
   }
 
 
   let addPost = () => {
-    props.addPost();
+    props.dispatch({type: 'ADD-POST'});
   }
 
   return (

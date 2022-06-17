@@ -12,9 +12,7 @@ const Profile = (props) => {
         <img src='https://svtechhub.com/images/contactus.jpg' />
       </div>
       <ProfileInfo />
-      <MyPosts profilePage={props.profilePage}
-        addPost={props.addPost} 
-        changePostElement={props.changePostElement}/>
+      <MyPosts profilePage={props.profilePage} dispatch={props.dispatch}/>
     </div>
   );
 }

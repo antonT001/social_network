@@ -11,7 +11,7 @@ let store = {
       ],
       textareaData: ""
     },
-  
+
     dialogsPage: {
       dialogsData: [
         { id: 1, name: 'Valera', ava: 'https://pixelbox.ru/wp-content/uploads/2020/12/avatar-youtube-10.jpg' },
@@ -33,45 +33,54 @@ let store = {
       { id: 3, name: 'Andrey', ava: 'https://placepic.ru/wp-content/uploads/2021/02/image_562610131056464036330.jpg' }
     ]
   },
+  _callSubscriber() {
+    ;
+  },
+
   getState() {
     return this._state
   },
-  _callSubscriber () {
-    ;
-  },
-  addPost() {
-    if (this._state.profilePage.textareaData == "") return;
-    let newPost = {
-      id: 3,
-      message: this._state.profilePage.textareaData,
-      likesCount: 0
-    }
-    this._state.profilePage.postsData.push(newPost);
-    this._state.profilePage.textareaData = ""
-    this._callSubscriber(this._state);
-  },
-  changePostElement(text) {
-
-    this._state.profilePage.textareaData = text;
-    this._callSubscriber(this._state);
-  },
-  addMessage() {
-    if (this._state.dialogsPage.textareaData == "") return;
-    let newMessage = {
-      id: 4,
-      message: this._state.dialogsPage.textareaData
-    }
-    this._state.dialogsPage.messegesData.push(newMessage);
-    this._state.dialogsPage.textareaData = ""
-    this._callSubscriber(this._state);
-  },
-  changeMessageElement(text) {
-
-    this._state.dialogsPage.textareaData = text;
-    this._callSubscriber(this._state);
-  },
-  _subscribe(observer) {
+  subscribe(observer) {
     this._callSubscriber = observer
+  },
+
+  dispatch(action) {
+    switch (action.type) {
+      case 'ADD-POST':
+        if (this._state.profilePage.textareaData == "") return;
+        let newPost = {
+          id: 3,
+          message: this._state.profilePage.textareaData,
+          likesCount: 0
+        }
+        this._state.profilePage.postsData.push(newPost);
+        this._state.profilePage.textareaData = ""
+        this._callSubscriber(this._state);
+        break;
+      case 'CHANGE-POST-ELEMENT':
+        this._state.profilePage.textareaData = action.text;
+        this._callSubscriber(this._state);
+        break;
+
+      case 'ADD-MESSAGE':
+        if (this._state.dialogsPage.textareaData == "") return;
+        let newMessage = {
+          id: 4,
+          message: this._state.dialogsPage.textareaData
+        }
+        this._state.dialogsPage.messegesData.push(newMessage);
+        this._state.dialogsPage.textareaData = ""
+        this._callSubscriber(this._state);
+        break;
+
+      case 'CHANGE-MESSAGE-ELEMENT':
+        this._state.dialogsPage.textareaData = action.text;
+        this._callSubscriber(this._state);
+        break;
+
+      default:
+        break;
+    }
   }
 }
 
