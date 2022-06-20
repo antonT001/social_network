@@ -1,27 +1,25 @@
 import React from 'react';
-import { addPostActionCreator, changePostElementActionCreator } from '../../../redux/profileReducer';
+import { profileAddPost, profileChangePostElement } from '../../../redux/profileSlice';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
 const MyPosts = (props) => {
 
-
   let postsElement = props.profilePage.postsData
     .map(elm => <Post message={elm.message} likesCount={elm.likesCount} />);
 
-  let newPostElement = React.createRef();
+  //let newPostElement = React.createRef(); узнать про ref
 
   let changePostElement = (e) => {
     //let text = newPostElement.current.value; узнать про ref
     let text = e.target.value;
-    props.dispatch(changePostElementActionCreator(text));
+    props.dispatch(profileChangePostElement(text));
   }
 
 
   let addPost = () => {
-    props.dispatch(addPostActionCreator());
+    props.dispatch(profileAddPost());
   }
-
   return (
     <div className={s.postsBlock}>
       <h3>My posts</h3>

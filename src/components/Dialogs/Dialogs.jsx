@@ -1,5 +1,5 @@
 import React from 'react';
-import { addMessageActionCreator, changeDialogsElementActionCreator } from '../../redux/dialogsReducer'
+import { dialogsAddMessage, dialogsChangeMessageElement } from '../../redux/dialogsSlice';
 import DialogItem from './DialogItem/DialogItem';
 import s from './Dialogs.module.css';
 import Message from './Message/Message';
@@ -13,16 +13,16 @@ const Dialogs = (props) => {
     let mesegesElement = props.dialogsPage.messegesData.map(elm =>
         <Message text={elm.message} />);
     
-    let newMessageElement = React.createRef();
+    //let newMessageElement = React.createRef(); узнать про ref
     
     let changeDialogsElement = (e) => {
         //let text = newMessageElement.current.value; узнать про ref
         let text = e.target.value;
-        props.dispatch(changeDialogsElementActionCreator(text));
+        props.dispatch(dialogsChangeMessageElement(text));
       }
 
     let addMessage = () => {
-        props.dispatch(addMessageActionCreator());
+        props.dispatch(dialogsAddMessage());
     }
     
 
