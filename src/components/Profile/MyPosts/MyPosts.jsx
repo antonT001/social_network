@@ -1,5 +1,4 @@
 import React from 'react';
-import { profileAddPost, profileChangePostElement } from '../../../redux/profileSlice';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
@@ -13,12 +12,12 @@ const MyPosts = (props) => {
   let changePostElement = (e) => {
     //let text = newPostElement.current.value; узнать про ref
     let text = e.target.value;
-    props.dispatch(profileChangePostElement(text));
+    props.profileChangePostElement(text);
   }
 
 
   let addPost = () => {
-    props.dispatch(profileAddPost());
+    props.profileAddPost();
   }
   return (
     <div className={s.postsBlock}>

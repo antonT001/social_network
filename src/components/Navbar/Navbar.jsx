@@ -24,7 +24,7 @@ const Navbar = (props) => {
     </div>
 
     <div className={s.sidebar}>
-      <Sidebar sidebar={props.sidebar} />
+      <Sidebar store={props.store} />
 
     </div>
 

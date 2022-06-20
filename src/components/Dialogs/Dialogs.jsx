@@ -1,12 +1,12 @@
 import React from 'react';
-import { dialogsAddMessage, dialogsChangeMessageElement } from '../../redux/dialogsSlice';
-import DialogItem from './DialogItem/DialogItem';
 import s from './Dialogs.module.css';
 import Message from './Message/Message';
+import DialogItem from './DialogItem/DialogItem'
 
 
 
 const Dialogs = (props) => {
+
     let dialogsElement = props.dialogsPage.dialogsData.map(elm =>
         <DialogItem name={elm.name} id={elm.id} ava={elm.ava} />);
 
@@ -18,11 +18,11 @@ const Dialogs = (props) => {
     let changeDialogsElement = (e) => {
         //let text = newMessageElement.current.value; узнать про ref
         let text = e.target.value;
-        props.dispatch(dialogsChangeMessageElement(text));
+        props.dialogsChangeMessageElement(text);
       }
 
     let addMessage = () => {
-        props.dispatch(dialogsAddMessage());
+        props.dialogsAddMessage();
     }
     
 
