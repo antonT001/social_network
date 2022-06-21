@@ -1,24 +1,24 @@
-import React from 'react';
+import { connect } from 'react-redux';
 import { dialogsAddMessage, dialogsChangeMessageElement } from '../../redux/dialogsSlice';
 import Dialogs from './Dialogs';
 
-
-
-const DialogsContainer = (props) => {
-    let dialogsPage = props.store.getState().dialogsPage;
-
-    let changeDialogsElement = (text) => {
-        props.store.dispatch(dialogsChangeMessageElement(text));
+const mapStateToProps = (state) =>{
+    return {
+        dialogsPage: state.dialogsPage
     }
-
-    let addMessage = () => {
-        props.store.dispatch(dialogsAddMessage());
-    }
-
-
-    return <Dialogs dialogsPage={dialogsPage}
-                    dialogsChangeMessageElement={changeDialogsElement}
-                    dialogsAddMessage={addMessage} />
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dialogsChangeMessageElement: (text) => {
+            dispatch(dialogsChangeMessageElement(text))
+        },
+        dialogsAddMessage: () => {
+            dispatch(dialogsAddMessage())
+        }
+    }
+}
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
 
 export default DialogsContainer;

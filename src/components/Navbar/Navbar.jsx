@@ -1,11 +1,10 @@
 import React from "react";
-import App from "../../App";
 import { NavLink } from "react-router-dom";
 import s from './Navbar.module.css'
-import Sidebar from "./Sidebar/Sidebar";
+import SidebarContainer from "./Sidebar/SidebarContainer";
 
 
-const Navbar = (props) => {
+const Navbar = () => {
   return <nav className={s.nav}>
     <div>
       <NavLink to="/profile" className={navData => navData.isActive ? s.active : s.item}>Profile</NavLink>
@@ -24,7 +23,7 @@ const Navbar = (props) => {
     </div>
 
     <div className={s.sidebar}>
-      <Sidebar store={props.store} />
+      <SidebarContainer />
 
     </div>
 

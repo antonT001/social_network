@@ -1,21 +1,25 @@
-import React from 'react';
+import { connect } from 'react-redux';
 import { profileAddPost, profileChangePostElement } from '../../../redux/profileSlice';
 import MyPosts from './MyPosts';
 
-const MyPostsContainer = (props) => {
 
-  let changePostElement = (text) => {
-    props.store.dispatch(profileChangePostElement(text));
+const mapStateToProps = (state) => {
+  return {
+    profilePage: state.profilePage
   }
-
-
-  let addPost = () => {
-    props.store.dispatch(profileAddPost());
-  }
-  return <MyPosts profilePage = {props.store.getState().profilePage}
-                  profileAddPost = {addPost}
-                  profileChangePostElement = {changePostElement}
-  />
 }
+
+const mapDispatchToProos = (dispatch) => {
+  return {
+    profileAddPost: () => {
+      dispatch(profileAddPost())
+    },
+    profileChangePostElement: (text) => {
+      dispatch(profileChangePostElement(text))
+    }
+  }
+}
+
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProos)(MyPosts)
 
 export default MyPostsContainer;

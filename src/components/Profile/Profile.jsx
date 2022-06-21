@@ -3,7 +3,7 @@ import MyPostsContainer from './MyPosts/MyPostsContainer';
 import s from './Profile.module.css';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
-const Profile = (props) => {
+const Profile = () => {
 
   return (
     <div>
@@ -11,7 +11,7 @@ const Profile = (props) => {
         <img src='https://svtechhub.com/images/contactus.jpg' />
       </div>
       <ProfileInfo />
-      <MyPostsContainer store={props.store}/>
+      <MyPostsContainer />
     </div>
   );
 }

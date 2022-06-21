@@ -4,7 +4,7 @@ import s from './Sidebar.module.css'
 
 const Sidebar = (props) => {
     
-    let sidebarElement = props.store.getState().sidebarPage.sidebar.map(elm =>
+    let sidebarElement = props.sidebarPage.sidebar.map(elm =>
         <div>
             <img className='avaMini' src={elm.ava} />
             <div>{elm.name}</div>
