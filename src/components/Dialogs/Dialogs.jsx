@@ -8,10 +8,10 @@ import DialogItem from './DialogItem/DialogItem'
 const Dialogs = (props) => {
 
     let dialogsElement = props.dialogsPage.dialogsData.map(elm =>
-        <DialogItem name={elm.name} id={elm.id} ava={elm.ava} />);
+        <DialogItem key={elm.id} name={elm.name} id={elm.id} ava={elm.ava} />);
 
     let mesegesElement = props.dialogsPage.messegesData.map(elm =>
-        <Message text={elm.message} />);
+        <Message key={elm.id} text={elm.message} />);
     
     //let newMessageElement = React.createRef(); узнать про ref
     

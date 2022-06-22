@@ -5,7 +5,7 @@ import s from './Sidebar.module.css'
 const Sidebar = (props) => {
     
     let sidebarElement = props.sidebarPage.sidebar.map(elm =>
-        <div>
+        <div key={elm.id}>
             <img className='avaMini' src={elm.ava} />
             <div>{elm.name}</div>
         </div>
