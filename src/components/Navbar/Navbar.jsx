@@ -27,7 +27,6 @@ const Navbar = () => {
 
     <div className={s.sidebar}>
       <SidebarContainer />
-
     </div>
 
   </nav>

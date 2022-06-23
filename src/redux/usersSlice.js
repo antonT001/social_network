@@ -11,7 +11,7 @@ const usersSlice = createSlice({
         usersFollow(state,action) {
            for (let index = 0; index < state.users.length; index++) {
             if (state.users[index].id === action.payload) {
-                state.users[index].signed = true
+                state.users[index].followed = true
                 break;
             }
            }
@@ -19,7 +19,7 @@ const usersSlice = createSlice({
         usersUnfollow(state, action) {
             for (let index = 0; index < state.users.length; index++) {
                 if (state.users[index].id === action.payload) {
-                    state.users[index].signed = false
+                    state.users[index].followed = false
                     break;
                 }
                }
