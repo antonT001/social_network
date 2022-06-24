@@ -5,18 +5,22 @@ import noPhotosSmallToUsers from '../../assets/images/users.jpeg'
 
 class Users extends React.Component {
 
-    componentDidMount() {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(respons => {
-            this.props.setUsers(respons.data.items)
-        })
+    constructor(props) {
+        super(props)
+        getUsers = () => {
+            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(respons => {
+                props.setUsers(respons.data.items)
+            })
+        }
     }
+
 
     render() {
         return (
             <div className={s.page}>
                 <h3>Users</h3>
                 <div>
-                    {this.props.usersPage.users.map(elm =>
+                    {props.usersPage.users.map(elm =>
                         <div key={elm.id} className={s.users}>
                             <div>
                                 <img className='avaMini' src={elm.photos.small === null ? noPhotosSmallToUsers : elm.photos.small} />
@@ -35,15 +39,19 @@ class Users extends React.Component {
                             </div>
                             <div>
                                 {elm.followed ?
-                                    <button onClick={() => { this.props.usersUnfollow(elm.id) }}> unfollow  </button> :
-                                    <button onClick={() => { this.props.usersFollow(elm.id) }}> follow </button>}
+                                    <button onClick={() => { props.usersUnfollow(elm.id) }}> unfollow  </button> :
+                                    <button onClick={() => { props.usersFollow(elm.id) }}> follow </button>}
                             </div>
                         </div>
                     )}
                 </div>
             </div>
+
+
         )
+
     }
+
 }
 
 export default Users;
